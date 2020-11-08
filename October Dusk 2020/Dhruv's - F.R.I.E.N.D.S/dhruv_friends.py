@@ -1,45 +1,17 @@
-n=3
-a=0
-s=0
-r=0
-for x in range(0,3):
-    word = input()
-    lis = list(word)
-    if lis[1]=='<':
-        if lis[0]=='A':
-            a = a-1
-        if lis[0]=='S':
-            s=s-1
-        if lis[0]=='R':
-            r=r-1
-        if lis[2]=='A':
-            a = a+1
-        if lis[2]=='S':
-            s=s+1
-        if lis[2]=='R':
-            r=r+1
-    if lis[1]=='>':
-        if lis[2]=='A':
-            a = a-1
-        if lis[2]=='S':
-            s=s-1
-        if lis[2]=='R':
-            r=r-1
-        if lis[0]=='A':
-            a = a+1
-        if lis[0]=='S':
-            s=s+1
-        if lis[0]=='R':
-            r=r+1
-if (r==a) or (r==s) or (s==a):
-    print("Impossible")
-else:
-    arr = [r,a,s]
-    arr.sort()
-    for x in arr:
-        if x == r:
-            print('R',end="")
-        if x == a:
-            print('A',end="")
-        if x == s:
-            print('S',end="")
+flag = 0
+p = {'A':0,'S':0,'R':0}
+for _ in range(3):
+    z = input()
+    if z[1]=='>':
+        p[z[0]]+=1
+    else:
+        p[z[2]]+=1
+t = list(p.values())
+if 0 not in t or 1 not in t or 2 not in t:
+    print('Impossible')
+    flag = 1
+ans = [0,1,2]
+if (not flag):
+    for i in p:
+        ans[p[i]]=i
+    print(ans[0]+ans[1]+ans[2])
